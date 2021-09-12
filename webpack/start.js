@@ -1,36 +1,31 @@
-const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const config = require("./commonConfig");
+const path = require("path");
+const chalk = require("chalk");
 
+console.info(chalk.bold.hex("#09d7d7")("Starting dev-server... 🚀"))
 module.exports = {
     mode: "development",
-    entry: path.resolve(__dirname, "../src/app/index.tsx"),
-    output: {
-        path: path.resolve("./dist"),
-        filename: "[name].[contenthash].js",
-    },
+    entry: config.entry,
+    output: config.output,
+    resolve: config.resolve,
+    module: config.module,
 
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-        modules: [
-            path.resolve("./src"),
-            path.resolve("./node_modules"),
-        ],
-    },
-
-    module: {
-        rules: [{
-            test: /(.tsx?$)/,
-            loader: "ts-loader",
-            exclude: /(node_modules)/
-        }],
-    },
-
-    plugins: [new HtmlWebpackPlugin({
-        template: "./static/index.html",
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve("./src/static/index.html"),
+        }),
+        new MiniCssExtractPlugin()
+    ],
 
     devServer: {
-        port: 8888,
+        port: 3333,
+        proxy: {
+            "/proxy_domain": {
+                target: "http://localhost:5000"
+            }
+        }
     },
     devtool: "eval-cheap-module-source-map",
 }

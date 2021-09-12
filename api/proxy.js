@@ -15,23 +15,44 @@ const router = (req, res) => {
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
         'Access-Control-Max-Age': 2592000, // 30 days,
         'Content-Type': "application/json; charset=utf-8",
-        /** add other headers as per requirement */
     };
 
     if (req.method === 'OPTIONS') {
         res.writeHead(204, headers);
-        res.end();
-        return;
+        return res.end();
+
     }
 
     if (['GET', 'POST'].indexOf(req.method) > -1) {
         res.writeHead(200, headers)
-        const body = [];
+        // if (req.url === "/proxy_domain/posts") {
+        //     https
+        //         .get("https://www.dcard.tw/v2/posts?popular=true", response => {
+        //             const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
+        //             console.log('Status Code:', res.statusCode);
+        //             console.log('Date in Response header:', headerDate);
+        //
+        //             let body = [];
+        //             response.on("data", chunk => {
+        //                 body.push(chunk)
+        //             });
+        //             response.on("end", () => {
+        //                 console.info(JSON.parse(Buffer.concat(body).toString()))
+        //                 return res.end(error.toString())
+        //             })
+        //         })
+        //         .on("error", error => {
+        //             console.info(error)
+        //             return res.end("failure")
+        //         })
+        // }
+
         if (req.url === "/proxy_domain/posts") {
-            axios.get("https://www.dcard.tw/v2/posts?popular=true")
+            axios
+                .get("https://www.dcard.tw/v2/posts?popular=true")
                 .then(response => {
                     res.write(JSON.stringify(response.data))
-                    res.end();
+                    return res.end();
                 })
         }
     }

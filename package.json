@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "webpack serve --config webpack/start.js",
-    "start-proxy": "node api/proxy.js",
-    "start": "node api/proxy.js | webpack serve --config webpack/start.js",
+    "start-proxy": "node proxy/index.js",
+    "start": "node proxy/proxy.js | webpack serve --config webpack/start.js",
     "build": "webpack --config webpack/build.js",
     "format": "prettier --write 'src/**/*'"
   },
@@ -16,9 +16,9 @@
   "author": "Kasper Chen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Pulse-beats/zing-frontend-project/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/Pulse-beats/zing-frontend-project#readme",
+  "homepage": "",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -54,6 +54,6 @@
     "webpack-dev-server": "^3.11.2"
   },
   "engines": {
-    "npm": "14.17.0"
+    "npm": "16.8.0"
   }
 }

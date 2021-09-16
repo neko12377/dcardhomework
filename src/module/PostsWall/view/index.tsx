@@ -1,9 +1,10 @@
-import React from "react";
-import {getPosts} from "../../../api/getPosts";
+import React, {useEffect, useRef, useState} from "react";
+import {usePostsGetting} from "../../../hooks/usePostsGetting";
 
 export interface PostsWallProps {};
 
-getPosts();
 export default (props: PostsWallProps) => {
+    const posts = usePostsGetting();
+    console.info(posts);
     return <div>12345</div>
 }

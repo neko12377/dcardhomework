@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
     entry: path.resolve("./src/index.tsx"),
     output: {
-        path: path.resolve("./dist"),
+        path: path.resolve("./build/dist"),
         filename: "[name].[contenthash].js",
     },
 

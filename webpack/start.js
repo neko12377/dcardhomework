@@ -1,7 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = require("./commonConfig");
-const path = require("path");
 const chalk = require("chalk");
 
 console.info(chalk.bold.hex("#09d7d7")("Starting dev-server... 🚀"))
@@ -12,11 +10,10 @@ module.exports = {
     resolve: config.resolve,
     module: config.module,
 
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve("./src/static/index.html"),
+    plugins: [...config.plugins,
+        new BundleAnalyzerPlugin({
+            analyzerPort: 7778,
         }),
-        new MiniCssExtractPlugin()
     ],
 
     devServer: {

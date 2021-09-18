@@ -1,8 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve("./src/index.tsx"),
+    entry: {
+        main: path.resolve("./src/index.tsx")
+    },
     output: {
         path: path.resolve("./build/dist"),
         filename: "[name].[contenthash].js",
@@ -42,4 +46,28 @@ module.exports = {
             path.resolve("./src")
         ]
     },
+
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+        splitChunks: {
+            cacheGroups: {
+                chunks: "all",
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    priority: -10,
+                    enforce: true,
+                },
+            },
+        }
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+                template: path.resolve("./src/static/index.html"),
+            }
+        ),
+        new MiniCssExtractPlugin(),
+    ],
 }

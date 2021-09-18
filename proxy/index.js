@@ -19,11 +19,12 @@ const router = (req, res) => {
     if (['GET', 'POST'].indexOf(req.method) > -1) {
         res.writeHead(200, headers)
 
-        if (req.url === "/proxy_domain/posts") {
+        if (req.url.includes("/proxy_domain_d_card/")) {
+            const urlPath = req.url.replace("/proxy_domain_d_card/", "https://www.dcard.tw/v2/")
             axios
-                .get("https://www.dcard.tw/v2/posts?popular=true")
+                .get(urlPath)
                 .then(response => {
-                    console.log(response.data);
+                    console.log(response);
                     res.write(JSON.stringify(response.data))
                     return res.end();
                 })

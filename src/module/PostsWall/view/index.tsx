@@ -1,11 +1,13 @@
-import React from "react";
-import { usePostsGetting } from "hooks/usePostsGetting";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import styled from "@emotion/styled";
+import {InfiniteScroll} from "../../../components/atom/InfiniteScroll";
 
-export interface PostsWallProps {}
+
+export interface PostsWallProps {
+}
 
 const PostsWall = (props: PostsWallProps) => {
-  const posts = usePostsGetting();
-  return <div>12345</div>;
+    return <InfiniteScroll />
 };
 
 export default PostsWall;

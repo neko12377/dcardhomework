@@ -107,21 +107,21 @@ interface BackToTopButtonProps {
 }
 
 const BackToTopButton = styled.a<BackToTopButtonProps>`
-  position: absolute;
-  bottom: 20px;
-  right: 26.5%;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(56, 99, 158, 0.66);
-  display: ${props => props.visibility};
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  font-weight: 900;
-  cursor: pointer;
-`
+    position: absolute;
+    bottom: 20px;
+    right: 26.5%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(56, 99, 158, 0.66);
+    display: ${(props) => props.visibility};
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+`;
 
 const InfiniteScroll = () => {
     const [urlPath, setUrlPath] = useState<string>(
@@ -168,13 +168,15 @@ const InfiniteScroll = () => {
         [currentLastId]
     );
 
-    const [backToTopButtonVisibility, setBackToTopButtonVisibility] = useState<"flex" | "none">("none");
+    const [backToTopButtonVisibility, setBackToTopButtonVisibility] = useState<
+        "flex" | "none"
+    >("none");
     const topObserver = useRef<null | IntersectionObserver>();
-    const firstPostBlock = useCallback(firstNode => {
+    const firstPostBlock = useCallback((firstNode) => {
         topObserver.current = new IntersectionObserver((entries) => {
             !entries[0].isIntersecting && setBackToTopButtonVisibility("flex");
             entries[0].isIntersecting && setBackToTopButtonVisibility("none");
-        })
+        });
         topObserver.current?.observe(firstNode);
     }, []);
 
@@ -200,7 +202,11 @@ const InfiniteScroll = () => {
                         <Excerpt>{item.excerpt}</Excerpt>
                     </Block>
                 ) : index === 0 ? (
-                    <Block key={`${item.title}_${item.id}`} ref={firstPostBlock} id="top">
+                    <Block
+                        key={`${item.title}_${item.id}`}
+                        ref={firstPostBlock}
+                        id="top"
+                    >
                         <Title>{item.title}</Title>
                         <Excerpt>{item.excerpt}</Excerpt>
                         <Hr />
@@ -213,7 +219,9 @@ const InfiniteScroll = () => {
                     </Block>
                 )
             )}
-            <BackToTopButton visibility={backToTopButtonVisibility} href="#top">TOP</BackToTopButton>
+            <BackToTopButton visibility={backToTopButtonVisibility} href="#top">
+                TOP
+            </BackToTopButton>
         </Base>
     );
 };

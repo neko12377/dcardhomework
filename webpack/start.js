@@ -6,7 +6,8 @@ console.info(chalk.bold.hex("#09d7d7")("Starting dev-server... 🚀"))
 module.exports = {
     ...config,
     mode: "development",
-    plugins: [...config.plugins,
+    plugins: [
+        ...config.plugins,
         new BundleAnalyzerPlugin({
             analyzerPort: 7778,
         }),

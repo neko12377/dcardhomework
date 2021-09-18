@@ -12,7 +12,6 @@ const Base = styled.div`
     align-items: center;
     background-color: white;
     width: 50%;
-    padding: 30px 5%;
     overflow-y: auto;
     height: 100%;
     max-height: 100%;
@@ -23,6 +22,13 @@ const Block = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    cursor: pointer;
+    padding: 30px 10%;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: rgba(203, 203, 203, 0.45);
+    }
 `;
 
 const Title = styled.h1`
@@ -121,6 +127,10 @@ const BackToTopButton = styled.a<BackToTopButtonProps>`
     color: white;
     font-weight: 900;
     cursor: pointer;
+
+    &:hover {
+        background-color: rgb(177, 231, 253);
+    }
 `;
 
 const InfiniteScroll = () => {

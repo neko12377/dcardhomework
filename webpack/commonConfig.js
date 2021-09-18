@@ -51,12 +51,20 @@ module.exports = {
         minimize: true,
         minimizer: [new TerserPlugin()],
         splitChunks: {
+            minSize: 2000,
             cacheGroups: {
-                chunks: "all",
                 vendor: {
+                    chunks: "all",
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendor',
-                    priority: -10,
+                    priority: 10,
+                    enforce: true,
+                },
+                reactVendor: {
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'reactVendor',
+                    priority: 11,
                     enforce: true,
                 },
             },

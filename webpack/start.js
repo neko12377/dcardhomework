@@ -4,12 +4,8 @@ const chalk = require("chalk");
 
 console.info(chalk.bold.hex("#09d7d7")("Starting dev-server... 🚀"))
 module.exports = {
+    ...config,
     mode: "development",
-    entry: config.entry,
-    output: config.output,
-    resolve: config.resolve,
-    module: config.module,
-
     plugins: [...config.plugins,
         new BundleAnalyzerPlugin({
             analyzerPort: 7778,

@@ -34,12 +34,12 @@ const DotLoading = styled.div`
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   }
 
-  & div:nth-child(1) {
+  & div:nth-of-type(1) {
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
   }
 
-  & div:nth-child(2) {
+  & div:nth-of-type(2) {
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
   }

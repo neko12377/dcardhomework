@@ -6,7 +6,7 @@ import {
 import styled from "@emotion/styled";
 
 const Base = styled.div`
-    isplay: flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -56,10 +56,10 @@ const Loading = styled.div`
     position: absolute;
     display: flex;
     top: 50%;
-    left: 42%;
+    left: 44%;
     background-color: rgba(151, 151, 151, 0.6);
     width: 150px;
-    height: 70px;
+    height: 80px;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
@@ -77,7 +77,7 @@ const Loading = styled.div`
         left: 8px;
         width: 16px;
         background: rgba(255, 255, 255, 0.73);
-        animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+        animation: lds-facebook 1.2s infinite;
     }
 
     & div div:nth-of-type(1) {
@@ -97,6 +97,10 @@ const Loading = styled.div`
 
     @keyframes lds-facebook {
         0% {
+            top: 16px;
+            height: 44px;
+        }
+        25% {
             top: 8px;
             height: 64px;
         }
@@ -143,7 +147,7 @@ const InfiniteScroll = () => {
     );
     const postArray =
         posts.length > 0
-            ? posts.map((item: PostContentInterface, index) => {
+            ? posts.map((item: PostContentInterface) => {
                   const { title, excerpt, id } = item;
                   return {
                       title,

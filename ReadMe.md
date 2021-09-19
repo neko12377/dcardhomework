@@ -1,4 +1,4 @@
-// 啟動專案 yarn start
+// 啟動專案 yarn start 會同時啟動 dev-server 跟 proxy server
 
 // 架構概述 <br />
 基本分為 <br />
@@ -11,3 +11,5 @@
 並以此代理伺服器允許browser跨域存取資料
 
 // Lint 部分選擇 ESLint + Prettier
+
+// 打包方面有把每個 chunk 都限制在 1MB 以下， react 跟 react-dom 也獨立出一個 vendor

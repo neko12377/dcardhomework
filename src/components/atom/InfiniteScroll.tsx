@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
     PostContentInterface,
     useDataGetting,
-} from "../../hooks/useDatsGetting";
+} from "../../hooks/useDataGetting";
 import styled from "@emotion/styled";
 
 const Base = styled.div`

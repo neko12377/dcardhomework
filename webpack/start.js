@@ -9,7 +9,8 @@ module.exports = {
     plugins: [
         ...config.plugins,
         new BundleAnalyzerPlugin({
-            analyzerPort: 7778,
+            analyzerPort: 12345,
+            openAnalyzer: false,
         }),
     ],
 
@@ -19,7 +20,8 @@ module.exports = {
             "/proxy_domain": {
                 target: "http://localhost:5000"
             }
-        }
+        },
+        open: true,
     },
     devtool: "eval-cheap-module-source-map",
 }

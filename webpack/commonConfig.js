@@ -1,7 +1,7 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
@@ -51,7 +51,8 @@ module.exports = {
         minimize: true,
         minimizer: [new TerserPlugin()],
         splitChunks: {
-            minSize: 2000,
+            minSize: 1000,
+            maxSize: 1000000,
             cacheGroups: {
                 vendor: {
                     chunks: "all",

@@ -25,6 +25,7 @@ const Block = styled.div`
     cursor: pointer;
     padding: 30px 10%;
     border-radius: 4px;
+    width: 100%;
 
     &:hover {
         background-color: rgba(203, 203, 203, 0.45);
@@ -141,12 +142,12 @@ const InfiniteScroll = () => {
     const [urlPath, setUrlPath] = useState<string>(
         "/proxy_domain_d_card/posts?popular=false"
     );
-    const { posts, hasMore, isLoading } = useDataGetting(urlPath);
+    const { posts, hasMore, isLoading, error } = useDataGetting(urlPath);
     const [currentLastId, setCurrentLastId] = useState<number | undefined>(
         posts[posts.length - 1]?.id
     );
     const postArray =
-        posts.length > 0
+        posts.length > 0 && !error
             ? posts.map((item: PostContentInterface) => {
                   const { title, excerpt, id } = item;
                   return {
@@ -208,7 +209,6 @@ const InfiniteScroll = () => {
                     </div>
                 </Loading>
             )}
-            <div id="top" />
             {postArray.map((item: PostContentInterface, index: number) =>
                 postArray.length === index + 1 ? (
                     <Block key={`${item.title}_${item.id}`} ref={lastPostBlock}>

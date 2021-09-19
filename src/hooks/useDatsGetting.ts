@@ -1,6 +1,6 @@
 // GET https://www.dcard.tw/v2/posts?popular=true
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface PostContentInterface {
     title: string;
@@ -46,6 +46,7 @@ export const useDataGetting = (
                 .catch((err) => {
                     console.info(`%c${err}`, "color: red");
                     setError(true);
+                    setIsLoading(false);
                 });
     }, [urlPath]);
 

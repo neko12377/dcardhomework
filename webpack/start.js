@@ -1,4 +1,4 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = require("./commonConfig");
 const chalk = require("chalk");
 
@@ -8,10 +8,10 @@ module.exports = {
     mode: "development",
     plugins: [
         ...config.plugins,
-        new BundleAnalyzerPlugin({
-            analyzerPort: 12345,
-            openAnalyzer: false,
-        }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerPort: 12345,
+        //     openAnalyzer: false,
+        // }),
     ],
 
     devServer: {

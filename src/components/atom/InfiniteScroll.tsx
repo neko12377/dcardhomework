@@ -138,6 +138,20 @@ const BackToTopButton = styled.a<BackToTopButtonProps>`
     }
 `;
 
+const NothingMoreBlock = styled.div`
+    position: absolute;
+    width: 40%;
+    height: 30%;
+    background-color: rgba(203, 203, 203, 0.34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 2rem;
+    top: 40%;
+    border-radius: 8px;
+`;
+
 const InfiniteScroll = () => {
     const [urlPath, setUrlPath] = useState<string>(
         "/proxy_domain_d_card/posts?popular=false"
@@ -195,9 +209,16 @@ const InfiniteScroll = () => {
         topObserver.current?.observe(firstNode);
     }, []);
 
+    const [showNoContentBlock, setShowNoContentBlock] =
+        useState<boolean>(false);
     useEffect(() => {
-        hasMore && setCurrentLastId(posts[posts.length - 1]?.id);
-    }, [posts, hasMore]);
+        !hasMore && setShowNoContentBlock(true);
+        !hasMore && setTimeout(() => setShowNoContentBlock(false), 3000);
+    }, [hasMore]);
+
+    useEffect(() => {
+        setCurrentLastId(posts[posts.length - 1]?.id);
+    }, [posts]);
     return (
         <Base>
             {isLoading && (
@@ -236,6 +257,9 @@ const InfiniteScroll = () => {
             <BackToTopButton visibility={backToTopButtonVisibility} href="#top">
                 TOP
             </BackToTopButton>
+            {showNoContentBlock && (
+                <NothingMoreBlock>抱歉，暫時沒有更多內容</NothingMoreBlock>
+            )}
         </Base>
     );
 };

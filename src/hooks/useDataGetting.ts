@@ -41,7 +41,7 @@ export const useDataGetting = (
                             return [...new Set([...preData, ...data])];
                         });
                     setIsLoading(false);
-                    setHasMore(data.length > 0);
+                    urlPath.includes("before") && setHasMore(data.length > 0);
                 })
                 .catch((err) => {
                     console.info(`%c${err}`, "color: red");

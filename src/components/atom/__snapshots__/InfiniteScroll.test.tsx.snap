@@ -51,11 +51,28 @@ exports[`infinite scroll 1`] = `
 }
 
 .emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+}
+
+.emotion-3 {
+  margin: 5px 0 10px 0;
   color: #2e2e2e;
   width: 100%;
 }
 
-.emotion-3 {
+.emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -72,7 +89,7 @@ exports[`infinite scroll 1`] = `
   width: 100%;
 }
 
-.emotion-4 {
+.emotion-5 {
   position: absolute;
   bottom: 20px;
   right: 26.5%;
@@ -96,7 +113,7 @@ exports[`infinite scroll 1`] = `
   cursor: pointer;
 }
 
-.emotion-4:hover {
+.emotion-5:hover {
   background-color: rgb(177, 231, 253);
 }
 
@@ -106,19 +123,24 @@ exports[`infinite scroll 1`] = `
   <div
     className="emotion-1"
   >
-    <h1
+    <div
       className="emotion-2"
+    >
+      男・undefined
+    </div>
+    <h1
+      className="emotion-3"
     >
       Currently not thing is available
     </h1>
     <div
-      className="emotion-3"
+      className="emotion-4"
     >
       woo woo
     </div>
   </div>
   <a
-    className="emotion-4"
+    className="emotion-5"
     href="#top"
     visibility="none"
   >

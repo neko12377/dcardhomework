@@ -32,7 +32,17 @@ const Block = styled.div`
     }
 `;
 
+const Inform = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    font-size: 14px;
+`;
+
 const Title = styled.h1`
+    margin: 5px 0 10px 0;
     color: #2e2e2e;
     width: 100%;
 `;
@@ -42,7 +52,6 @@ const Excerpt = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     color: #3e3e3e;
-
     width: 100%;
 `;
 
@@ -157,17 +166,20 @@ const InfiniteScroll = () => {
         "/proxy_domain_d_card/posts?popular=false"
     );
     const { posts, hasMore, isLoading, error } = useDataGetting(urlPath);
+    console.info(posts);
     const [currentLastId, setCurrentLastId] = useState<number | undefined>(
         posts[posts.length - 1]?.id
     );
     const postArray =
         posts.length > 0 && !error
             ? posts.map((item: PostContentInterface) => {
-                  const { title, excerpt, id } = item;
+                  const { title, excerpt, id, gender, forumName } = item;
                   return {
                       title,
                       excerpt,
                       id,
+                      gender,
+                      forumName,
                   };
               })
             : [
@@ -233,6 +245,9 @@ const InfiniteScroll = () => {
             {postArray.map((item: PostContentInterface, index: number) =>
                 postArray.length === index + 1 ? (
                     <Block key={`${item.title}_${item.id}`} ref={lastPostBlock}>
+                        <Inform>{`${item.gender === "M" ? "女" : "男"}・${
+                            item.forumName
+                        }`}</Inform>
                         <Title>{item.title}</Title>
                         <Excerpt>{item.excerpt}</Excerpt>
                     </Block>
@@ -242,12 +257,18 @@ const InfiniteScroll = () => {
                         ref={firstPostBlock}
                         id="top"
                     >
+                        <Inform>{`${item.gender === "M" ? "女" : "男"}・${
+                            item.forumName
+                        }`}</Inform>
                         <Title>{item.title}</Title>
                         <Excerpt>{item.excerpt}</Excerpt>
                         <Hr />
                     </Block>
                 ) : (
                     <Block key={`${item.title}_${item.id}`}>
+                        <Inform>{`${item.gender === "M" ? "女" : "男"}・${
+                            item.forumName
+                        }`}</Inform>
                         <Title>{item.title}</Title>
                         <Excerpt>{item.excerpt}</Excerpt>
                         <Hr />

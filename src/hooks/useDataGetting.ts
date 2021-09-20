@@ -6,6 +6,8 @@ export interface PostContentInterface {
     title: string;
     excerpt: string;
     id?: number;
+    gender?: "F" | "M";
+    forumName?: string;
 }
 
 interface usePostsGettingReturnInterface {

@@ -5,5 +5,5 @@ module.exports = {
   testRegex: "test.tsx?$",
   snapshotSerializers: [
     '@emotion/jest/serializer',
-  ]
+  ],
 };

@@ -18,7 +18,6 @@ const router = (req, res) => {
 
     if (['GET', 'POST'].indexOf(req.method) > -1) {
         res.writeHead(200, headers)
-
         if (req.url.includes("/proxy_domain_d_card/")) {
             const urlPath = req.url.replace("/proxy_domain_d_card/", "https://www.dcard.tw/v2/")
             axios

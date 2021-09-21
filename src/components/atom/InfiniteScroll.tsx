@@ -166,7 +166,6 @@ const InfiniteScroll = () => {
         "/proxy_domain_d_card/posts?popular=false"
     );
     const { posts, hasMore, isLoading, error } = useDataGetting(urlPath);
-    console.info(posts);
     const [currentLastId, setCurrentLastId] = useState<number | undefined>(
         posts[posts.length - 1]?.id
     );
@@ -184,7 +183,7 @@ const InfiniteScroll = () => {
               })
             : [
                   {
-                      title: "Currently not thing is available",
+                      title: "Something Wrong",
                       excerpt: "woo woo",
                   },
               ];
@@ -223,6 +222,7 @@ const InfiniteScroll = () => {
 
     const [showNoContentBlock, setShowNoContentBlock] =
         useState<boolean>(false);
+
     useEffect(() => {
         !hasMore && setShowNoContentBlock(true);
         !hasMore && setTimeout(() => setShowNoContentBlock(false), 3000);
@@ -231,6 +231,7 @@ const InfiniteScroll = () => {
     useEffect(() => {
         setCurrentLastId(posts[posts.length - 1]?.id);
     }, [posts]);
+
     return (
         <Base>
             {isLoading && (

@@ -28,8 +28,16 @@ const router = (req, res) => {
                     return res.end();
                 })
                 .catch(error => {
-                    res.write(JSON.stringify(error))
-                    return res.end();
+                    if (error.response) {
+                        console.log(error.response.status);
+                        res.writeHead(error.response.status, headers)
+                        return res.end();
+                    }else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
                 })
         }
     }

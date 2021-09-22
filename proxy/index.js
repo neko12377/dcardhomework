@@ -30,7 +30,7 @@ const router = (req, res) => {
                 .catch(error => {
                     if (error.response) {
                         console.log(error.response.status);
-                        res.writeHead(error.response.status, headers)
+                        res.writeHead(error.response.status, headers);
                         return res.end();
                     }else if (error.request) {
                         console.log(error.request);
